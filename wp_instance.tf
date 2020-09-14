@@ -3,7 +3,7 @@ resource "aws_instance" "wp_ubuntu" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = ["${aws_security_group.for_public.id}"]
   subnet_id              = aws_subnet.subnet1.id
-  key_name               = "test"
+  # key_name               = "test"
 
   associate_public_ip_address = true
   ebs_block_device {
@@ -17,7 +17,7 @@ resource "aws_instance" "wp_ubuntu" {
     Project     = "test-proj"
   }
 
-  provisioner "file" {
+  /* provisioner "file" {
     source      = "./install.sh"
     destination = "/home/ubuntu/install.sh"
   }
@@ -26,7 +26,7 @@ resource "aws_instance" "wp_ubuntu" {
       "sudo chmod +x /home/ubuntu/install.sh",
       "sudo sh /home/ubuntu/install.sh",
     ]
-  }
+  } */
   connection {
     type        = "ssh"
     user        = "ubuntu"
